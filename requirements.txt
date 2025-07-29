@@ -14,3 +14,4 @@ stripe
 asyncpg
 orjson
 gunicorn
+email_validator
