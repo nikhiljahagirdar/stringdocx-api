@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+sqlmodel
+psycopg2-binary
+fastapi-jwt-auth3
+passlib
+python-dotenv
+google-auth
+pypdf
+pymupdf
+pypdf2
+python-multipart
+stripe
+asyncpg
+orjson
