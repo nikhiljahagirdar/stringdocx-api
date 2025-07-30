@@ -2,6 +2,7 @@ import asyncpg
 import os
 from dotenv import load_dotenv
 import pathlib
+import ssl
 
 load_dotenv()
 
@@ -22,12 +23,15 @@ async def execute_sql_from_file():
     """
     Reads a .sql file from the given local path and executes its contents.
     """
+    ssl_context = ssl.create_default_context()
+
     conn = await asyncpg.connect(
         user=os.getenv("POSTGRES_USER", "postgres"),
         password=os.getenv("POSTGRES_PASSWORD", "postgres"),
         database=os.getenv("POSTGRES_DB", "wizdocx"),
         host=os.getenv("POSTGRES_HOST", "localhost"),
         port=int(os.getenv("POSTGRES_PORT", 5432)),
+        ssl_context=ssl_context,
     )
 
     # Define the local file path for scripts.sql
