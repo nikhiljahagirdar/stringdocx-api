@@ -8,13 +8,13 @@ load_dotenv()
 
 async def get_database() -> asyncpg.Connection:
     load_dotenv()
-    conn = await asyncpg.connect(
-        user=os.getenv("POSTGRES_USER", "postgres"),
-        password=os.getenv("POSTGRES_PASSWORD", "postgres"),
-        database=os.getenv("POSTGRES_DB", "wizdocx"),
-        host=os.getenv("POSTGRES_HOST", "localhost"),
-        port=int(os.getenv("POSTGRES_PORT", 5432)),
-    )
+    user=os.getenv("POSTGRES_USER", "postgres"),
+    password=os.getenv("POSTGRES_PASSWORD", "postgres"),
+    database=os.getenv("POSTGRES_DB", "wizdocx"),
+    host=os.getenv("POSTGRES_HOST", "localhost"),
+    port=int(os.getenv("POSTGRES_PORT", 5432)),
+    connection_string="postgresql://{user}:{password}@{host}:{port}/{database}?sslmode=require"
+    conn = await asyncpg.connect(connection_string)
     return conn
 
 
